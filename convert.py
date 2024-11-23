@@ -22,15 +22,19 @@ def read_config():
         if os.path.exists(str):
             try:
                 config = utils.yaml2dict(str)
+                workPath = os.path.dirname(str)
+                config['template'] = os.path.abspath(os.path.join(workPath, config['template']))
+                config['data'] = os.path.abspath(os.path.join(workPath, config['data']))
+                config['dst'] = os.path.abspath(os.path.join(workPath, config['dst']))
                 if config['template'] is None or not os.path.exists(config['template']):
-                    print(f"模板路径 {config['template']} 不存在, 请重试:")
-                    sys.exit()
+                    print(f"模板路径 {config['template']} 不存在, 请重试:\n")
+                    continue
                 if config['data'] is None or not os.path.exists(config['data']):
-                    print(f"数据路径 {config['data']} 不存在, 请重试:")
-                    sys.exit()
+                    print(f"数据路径 {config['data']} 不存在, 请重试:\n")
+                    continue
                 if config['dst'] is None:
-                    print(f"目标目录 {config['dst']} 不存在, 请重试:")
-                    sys.exit()
+                    print(f"目标目录 {config['dst']} 不存在, 请重试:\n")
+                    continue
                 os.makedirs(config['dst'], exist_ok=True)
                 
                 print("请确认以下信息(输入 Y 并回车确认, 输入其它内容取消操作):")
@@ -53,7 +57,7 @@ def read_config():
             else:
                 return 
         else:
-            print(f"配置文件路径不存在, 请重试:")
+            print(f"配置文件路径不存在, 请重试:\n")
 
 def unzip_docx(docx_path):
     print("正在解压 docx 文档")

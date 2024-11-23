@@ -15,6 +15,10 @@
 
 本项目 example 文件夹中有示例和效果演示.
 
+点击 [Release](https://github.com/huan-yp/DocxGenerator/releases) 找到本项目最新发布并下载解压.
+
+选择解压到 `convert/` 目录, 点击 .exe 文件运行, **不要删去剩下的任何非 .exe 文件**
+
 #### 制作模板 .docx 文档
 
 下面以制作准考证 .docx 文件为例:

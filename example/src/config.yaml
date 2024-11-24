@@ -1,0 +1,4 @@
+﻿template: "E:/IPP/DocxGenerator/example/src/template.docx" # 模板 docx 文件
+data: "data.xlsx" # 数据 xlsx 表格
+dst: ../result # 目标路径, 它必须存在
+filename: # 命名方式

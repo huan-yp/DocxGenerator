@@ -7,7 +7,7 @@ import sys
 
 import pandas as pd
 
-CONFIG = None
+CONFIG = '/run/media/hpp/softwaredata/Code/Projects/DocxGenerator/example/config.yaml' 
 QUICK = False
 MATCH_PREFIX = "PLACE_HOLDER_"
 
@@ -86,7 +86,7 @@ def read_xlsx(xlsx_path) -> pd.DataFrame:
     for index, key in enumerate(df.keys(), start=1):
         if match_template.match(key) and int(match_template.match(key).group(1)) == index:
             continue
-        print(f"数据表格表头有误, 第 {index} 列应该为 PLACE_HOLDER_{index}, 但你的表格是 {key}")
+        print(f"数据表格表头有误, 第 {index} 列应该为 {MATCH_PREFIX}{index}, 但你的表格是 {key}")
         sys.exit()
     
     return df
@@ -131,6 +131,7 @@ def gen_docx(template, df:pd.DataFrame, dst, filename=None):
 
 read_config()
 df = read_xlsx(config['data'])
+print(df)
 gen_docx(config['template'], df, config['dst'], config['filename'])
 
 

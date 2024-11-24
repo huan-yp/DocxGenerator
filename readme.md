@@ -43,23 +43,38 @@
 
 如果你的计算机知识不够扎实, 所有路径请使用**绝对路径**.
 
+如果你想要使用**相对路径**, 请注意，使用相对 `config.yaml` 的路径.
+
 本项目的 release 用 pyinstaller 打包, 拥有相关知识的同学可以自行替换为相对路径, 实际上我更建议你下载本项目源代码使用.
 
+给出一个示例的文件结构和配置文件如下
+
 ```
-template: "template.docx" # 模板 docx 文件路径
+E:/IPP/DocxGenerator/example/
+├── src/
+│   ├── config.yaml
+│   ├── template.docx
+│   └── data.xlsx
+└── result/
+```
+
+```
+template: "E:/IPP/DocxGenerator/example/src/template.docx" # 模板 docx 文件路径
 data: "data.xlsx" # 数据 xlsx 表格路径
-dst: result # 目标路径, 如果不存在, 将会创建
+dst: "../result" # 目标路径, 如果不存在, 将会创建
 filename: # 命名方式, 留空直接采用 [对应数据的行号 - 1] 命名
 ```
 
-- `template`: 我使用的相对 `example` 的路径, 请你用绝对路径.
-- `data`: 我使用的相对 `example` 的路径, 请你用绝对路径.
-- `dst`: 我使用的相对 `example` 的路径, 请你用绝对路径.
+- `template`: 这里使用了绝对路径.
+- `data`: 相对 `config.yaml` 的路径.
+- `dst`: 相对 `config.yaml` 的路径，支持向上一级目录的索引.
 - `filename`: 它支持 `PLACE_HOLDER_[数字ID]` 参数, 会对次做替换, 为了避免重名, 在此基础上会加上 `[对应数据的行号 - 1]-` 作为前置
 
 #### 运行
 
 - 一般来说双击 Release 的 .exe 文件运行即可, 如果发现运行出错, 可以用命令行运行它, 然后将报错信息提交到 Issue
+
+- 如果你对自己书写的绝对路径不够自信, 尝试拖拽你的 `config.yaml` 文件到程序运行窗口, 它会自动帮你填写路径
 
 ### Release
 
